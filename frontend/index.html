@@ -753,49 +753,87 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 30px;
-            }
+       /* --- FULL RESPONSIVE FIXES --- */
 
-            .logo {
-                font-size: 24px;
-            }
+@media (max-width: 1100px) {
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+    .movie-poster {
+        height: 360px;
+    }
+}
 
-            .hero h1 {
-                font-size: 42px;
-            }
+@media (max-width: 768px) {
+    header {
+        padding: 15px 18px;
+    }
 
-            .hero p {
-                font-size: 18px;
-            }
+    .logo {
+        font-size: 22px;
+    }
 
-            .search-container {
-                padding: 35px 25px;
-                border-radius: 25px;
-            }
+    .hero h1 {
+        font-size: 38px;
+        line-height: 1.2;
+    }
 
-            .search-box {
-                flex-direction: column;
-            }
+    .hero p {
+        font-size: 16px;
+    }
 
-            .btn-primary {
-                width: 100%;
-            }
+    .search-container {
+        padding: 25px;
+        border-radius: 20px;
+    }
 
-            .container {
-                padding: 0 30px 80px;
-            }
+    .search-box {
+        flex-direction: column;
+    }
 
-            .section-title {
-                font-size: 32px;
-            }
+    .search-input {
+        width: 100%;
+        padding: 16px 20px;
+        font-size: 15px;
+    }
 
-            .movies-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-        }
+    .btn-primary {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .movies-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .movie-poster {
+        height: 260px;
+    }
+
+    .movie-title {
+        font-size: 18px;
+    }
+
+    .movie-overview {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .movie-poster {
+        height: 230px;
+    }
+}
+
     </style>
 </head>
 <body>
