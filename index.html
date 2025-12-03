@@ -1037,7 +1037,7 @@
             resultsDiv.innerHTML = '';
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/browse');
+                const response = await fetch('https://movie-recommendation-app-kbxr.onrender.com/browse');
                 const data = await response.json();
                 
                 loader.style.display = 'none';
@@ -1061,7 +1061,7 @@
             loader.style.display = 'block';
             resultsDiv.innerHTML = '';
 
-            const url = `http://127.0.0.1:5000/browse?genre=${genre}&rating=${rating}&runtime=${runtime}`;
+            const url = `https://movie-recommendation-app-kbxr.onrender.com/browse?genre=${genre}&rating=${rating}&runtime=${runtime}`;
 
             try {
                 const response = await fetch(url);
@@ -1103,7 +1103,7 @@
             loader.style.display = 'block';
             resultsDiv.innerHTML = '';
 
-            const url = `http://127.0.0.1:5000/recommend?movie=${encodeURIComponent(movieName)}&genre=${genre}&rating=${rating}&runtime=${runtime}`;
+            const url = `https://movie-recommendation-app-kbxr.onrender.com/recommend?movie=${encodeURIComponent(movieName)}&genre=${genre}&rating=${rating}&runtime=${runtime}`;
 
             try {
                 const response = await fetch(url);
