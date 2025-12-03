@@ -180,6 +180,51 @@ def recommend():
         })
 
     return jsonify(results)
+@app.route("/trending")
+def trending():
+    try:
+        limit = int(request.args.get("limit", 24))
+        min_votes = int(request.args.get("min_votes", 50))
+
+        trending_df = df.copy()
+
+        # Filter by minimum votes
+        if "vote_count" in trending_df.columns:
+            trending_df = trending_df[trending_df["vote_count"].fillna(0) >= min_votes]
+
+        # Prefer 'popularity' if available
+        if "popularity" in trending_df.columns:
+            trending_df = trending_df.sort_values("popularity", ascending=False)
+        else:
+            # Weighted rating if popularity not available
+            C = trending_df["vote_average"].mean()
+            m = min_votes
+            v = trending_df["vote_count"].fillna(0)
+            R = trending_df["vote_average"].fillna(C)
+
+            trending_df["score"] = (v/(v+m))*R + (m/(v+m))*C
+            trending_df = trending_df.sort_values("score", ascending=False)
+
+        trending_df = trending_df.head(limit)
+
+        results = [
+            {
+                "title": row["title"],
+                "genres": row["genres"],
+                "overview": row["overview"],
+                "poster": row["poster_path"],
+                "rating": float(row["vote_average"]),
+                "runtime": int(row["runtime"]),
+                "popularity": float(row.get("popularity", 0))
+            }
+            for _, row in trending_df.iterrows()
+        ]
+
+        return jsonify(results)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route("/health")
 def health():

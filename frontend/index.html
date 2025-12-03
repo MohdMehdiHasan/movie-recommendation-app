@@ -1075,7 +1075,7 @@
             resultsDiv.innerHTML = '';
 
             try {
-                const response = await fetch('https://movie-recommendation-app-kbxr.onrender.com/browse');
+                const response = await fetch('https://movie-recommendation-app-kbxr.onrender.com/trending');
                 const data = await response.json();
                 
                 loader.style.display = 'none';
